@@ -4,7 +4,11 @@ library(RHRV)
 
 hrv.data <- CreateHRVData()
 
-hrv.data <- LoadBeatWFDB(hrv.data, RecordName = "ECGPCG0003",annotator = "dat")
+hrv.data <- LoadBeatWFDB(hrv.data, RecordName = "ECGPCG0003",annotator = "dat",
+                         RecordPath = "Data")
+
+beats <- hrv.data$Beat$Time
+
 # hrv.data$Beat$Time: vector con los tiempos (en segundos) de cada latido detectado.
 
 # # Calcular HRV paso a paso
