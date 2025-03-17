@@ -9,6 +9,28 @@ hrv.data <- LoadBeatWFDB(hrv.data, RecordName = "ECGPCG0003",annotator = "dat",
 
 beats <- hrv.data$Beat$Time
 
+# Supongamos que tienes:
+# r_peak_times: vector con los tiempos en segundos donde hay picos R
+# Duración total de la señal (segundos):
+duracion <- max(beats)
+# 
+# # Frecuencia de muestreo deseada para visualizar (ej: 250 Hz)
+# fs <- 8000
+# tiempo <- seq(0, duracion, by = 1/fs)
+# 
+# # Crear señal vacía
+# r_peaks_signal <- rep(0, length(tiempo))
+# 
+# # Encontrar posiciones donde hay latidos
+# indices_r <- sapply(beats, function(t) which.min(abs(tiempo - t)))
+# 
+# # Asignar valor 1 en esos puntos
+# r_peaks_signal[indices_r] <- 1
+# 
+# # Visualizar "cardiograma binario"
+# plot(tiempo, r_peaks_signal, type = "h", lwd = 2, xlab = "Tiempo (s)", ylab = "Latido", main = "Latidos detectados (picos R)")
+
+
 # hrv.data$Beat$Time: vector con los tiempos (en segundos) de cada latido detectado.
 
 # # Calcular HRV paso a paso

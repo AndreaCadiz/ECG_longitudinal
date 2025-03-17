@@ -27,3 +27,5 @@ r_peak_indices <- peaks[,2]
 
 # Obtener los tiempos de esos picos
 r_peak_times <- time[r_peak_indices]
+
+
