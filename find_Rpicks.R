@@ -20,7 +20,7 @@ max(ecg_mV)
 
 # npeaks: Sabemos con beats cuantos R hay.
 
-peaks <- findpeaks(ecg_mV, minpeakheight = 0.15, npeaks=length(beats))
+peaks <- findpeaks(ecg_mV, minpeakheight = 0.15, npeaks=length(beats)) # no tiene sentido 614 latidos en 30s
 
 # Extraer índices de los picos R detectados
 r_peak_indices <- peaks[,2]
@@ -28,4 +28,19 @@ r_peak_indices <- peaks[,2]
 # Obtener los tiempos de esos picos
 r_peak_times <- time[r_peak_indices]
 
+
+
+# Convertir tiempos de beats a índices (buscando el más cercano en time)
+beats_indices <- sapply(beats, function(t) which.min(abs(time - t)))
+# Graficar la señal ECG
+plot(time, ecg_mV, type = "l", main = "Latidos detectados vs beats", xlab = "Tiempo (s)", ylab = "ECG (mV)")
+
+# Marcar los latidos detectados desde ecg_mV (picos R) en rojo
+points(r_peak_times, ecg_mV[r_peak_indices], col = "red", pch = 20)
+
+# Marcar los latidos de beats (archivo/anotaciones) en azul
+points(beats, ecg_mV[beats_indices], col = "blue", pch = 4)
+
+# Leyenda
+legend("topright", legend = c("Latidos ecg_mV", "Latidos beats"), col = c("red", "blue"), pch = c(20, 4))
 
